@@ -1,0 +1,13 @@
+# Run the server in the background
+daemon: true
+
+# HTTP server settings
+http:
+    # Forces the HTTP port that will be used to run the server
+    port: 8888
+    # toggle GZIP compression
+    use_gzip: true
+
+workers:
+    # Auto-start Docker Compose
+    docker_compose: ~
