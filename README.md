@@ -4,9 +4,9 @@
 > 
 > Dieses Repository demonstriert die schrittweise Evolution einer Symfony-Anwendung – von einem schnellen Rapid-Application-Development-Prototyp (RAD) hin zu einer sauberen, wartbaren und testbaren Architektur.
 
----
+Weiterführende Informationen und alle Artikel dieser Serie findest du auf meinem [Blog](https://mitopp.de/blog).
 
-## 📌 Übersicht & Konzept
+## Übersicht & Konzept
 
 In vielen realen Projekten beginnt die Entwicklung mit schnellen Prototypen (Fat Controllers, direkte Doctrine-Abhängigkeiten in UI-Schichten, schnelle CRUD-Generierung). Im Laufe der Zeit steigen jedoch die Anforderungen an Wartbarkeit, Skalierbarkeit und Testbarkeit.
 
@@ -19,7 +19,7 @@ Dieses Projekt zeigt anhand verschiedener Branches und Evolutionsstufen, wie typ
 
 ---
 
-## 🌿 Branches & Evolutionsstufen
+## Branches & Evolutionsstufen
 
 Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierungen sind in dedizierten Branches organisiert.
 
@@ -31,7 +31,7 @@ Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierung
 
 ---
 
-## 🛠️ Systemanforderungen
+## Systemanforderungen
 
 - **PHP:** >= 8.4 (mit Extensions `ctype`, `iconv`)
 - **Composer:** >= 2.x
@@ -40,7 +40,7 @@ Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierung
 
 ---
 
-## 🚀 Installation & Schnellstart
+## Installation & Schnellstart
 
 ### 1. Repository klonen & Abhängigkeiten installieren
 
@@ -85,7 +85,7 @@ php -S 127.0.0.1:8888 -t public
 
 ---
 
-## 🧪 Tests ausführen
+## Tests ausführen
 
 Das Projekt nutzt PHPUnit für Unit-, Integrations- und Web-Tests:
 
@@ -95,7 +95,7 @@ php bin/phpunit
 
 ---
 
-## 📋 Nützliche Befehle (Workflow)
+## Nützliche Befehle (Workflow)
 
 ```bash
 # Cache leeren
@@ -114,6 +114,6 @@ php bin/console lint:yaml config/
 
 ---
 
-## 📄 Lizenz
+## Lizenz
 
-Dieses Projekt ist für Schulungs- und Demonstrationszwecke gedacht und wurde unter der MIT-Lizenz veröffentlicht.
+Dieses Projekt ist für Schulungs- und Demonstrationszwecke gedacht und wurde unter der [MIT-Lizenz](LICENSE) veröffentlicht.
