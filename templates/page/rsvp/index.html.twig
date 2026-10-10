@@ -1,0 +1,15 @@
+{% extends 'layout/page.html.twig' -%}
+
+{% block title -%}Event Zusage{% endblock -%}
+
+{% block content -%}
+    <h1>Bist du dabei?</h1>
+
+    {% for message in app.flashes('success') %}
+        <div role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {{ form(form) }}
+{% endblock -%}

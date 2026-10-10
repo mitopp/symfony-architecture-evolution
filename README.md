@@ -1,7 +1,7 @@
 # Symfony Architecture Evolution
 
 > **Vom RAD-Prototyp zum sauberen Code**
-> 
+>
 > Dieses Repository demonstriert die schrittweise Evolution einer Symfony-Anwendung – von einem schnellen Rapid-Application-Development-Prototyp (RAD) hin zu einer sauberen, wartbaren und testbaren Architektur.
 
 Weiterführende Informationen und alle Artikel dieser Serie findest du auf meinem [Blog](https://mitopp.de/blog).
@@ -23,9 +23,10 @@ Dieses Projekt zeigt anhand verschiedener Branches und Evolutionsstufen, wie typ
 
 Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierungen sind in dedizierten Branches organisiert.
 
-| Branch | Stufe / Thema | Beschreibung |
-|---|---|---|
-| `main` | **Basis-Setup** | Grundlegendes Symfony 8-Setup mit Docker (PostgreSQL), PHP 8.4 und Baseline-Konfiguration. |
+| Branch                    | Stufe / Thema            | Beschreibung                                                                                         |
+|---------------------------|--------------------------|------------------------------------------------------------------------------------------------------|
+| `main`                    | **Basis-Setup**          | Grundlegendes Symfony 8-Setup mit Docker (PostgreSQL), PHP 8.4 und Baseline-Konfiguration.           |
+| `01-rad-controller-magic` | **RAD-Controller-Magic** | Wie mächtig ist Rapid Application Development (RAD), wenn man einfach alles in den Controller wirft. |
 
 > *Hinweis: Neue Feature-Branches und Architekturstufen werden hier kontinuierlich dokumentiert und verlinkt.*
 
@@ -73,12 +74,15 @@ php bin/console doctrine:migrations:migrate --no-interaction
 ### 4. Lokalen Entwicklungsserver starten
 
 Mit der **Symfony CLI** (empfohlen):
+
 ```bash
 symfony serve
 ```
+
 Die Anwendung ist standardmäßig unter `http://127.0.0.1:8888` erreichbar.
 
 Alternativ mit dem integrierten PHP-Webserver:
+
 ```bash
 php -S 127.0.0.1:8888 -t public
 ```
