@@ -123,6 +123,11 @@ php vendor/bin/rector --dry-run
 # Statische Code Analyse
 php vendor/bin/phpstan analyse
 ```
+In der `composer.json` sind noch entsprechende Aliase definiert. 
+
+```
+composer run-script
+```
 
 ---
 

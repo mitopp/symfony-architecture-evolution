@@ -81,7 +81,21 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "php:cs": "@php vendor/bin/php-cs-fixer check --diff",
+        "php:cs:fix": "@php vendor/bin/php-cs-fixer fix",
+        "php:stan": [
+            "@php bin/console cache:clear",
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "php:unit": [
+            "@php bin/console cache:clear --env=test",
+            "@php vendor/bin/phpunit"
+        ],
+        "rector": "@php vendor/bin/rector process --no-progress-bar --dry-run",
+        "rector:fix": "@php vendor/bin/rector process",
+        "twig:cs": "@php vendor/bin/twig-cs-fixer check",
+        "twig:cs:fix": "@php vendor/bin/twig-cs-fixer fix"
     },
     "conflict": {
         "symfony/symfony": "*"
