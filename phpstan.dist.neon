@@ -1,0 +1,18 @@
+includes:
+    - phpstan-baseline.dist.neon
+
+parameters:
+    level: max
+    paths:
+        - bin/
+        - config/
+        - public/
+        - src/
+        - tests/
+    excludePaths:
+        analyseAndScan:
+            - config/reference.php (?)
+    parallel:
+        maximumNumberOfProcesses: 4
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
