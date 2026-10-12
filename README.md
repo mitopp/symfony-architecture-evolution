@@ -23,10 +23,11 @@ Dieses Projekt zeigt anhand verschiedener Branches und Evolutionsstufen, wie typ
 
 Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierungen sind in dedizierten Branches organisiert.
 
-| Branch                    | Stufe / Thema            | Beschreibung                                                                                         |
-|---------------------------|--------------------------|------------------------------------------------------------------------------------------------------|
-| `main`                    | **Basis-Setup**          | Grundlegendes Symfony 8-Setup mit Docker (PostgreSQL), PHP 8.4 und Baseline-Konfiguration.           |
-| `01-rad-controller-magic` | **RAD-Controller-Magic** | Wie mächtig ist Rapid Application Development (RAD), wenn man einfach alles in den Controller wirft. |
+| Branch                      | Stufe / Thema               | Beschreibung                    |
+|-----------------------------|-----------------------------|---------------------------------|
+| `main`                      | **Projekt**                 | Das komplette Beispiel Projekt  |
+| `01-rad-controller-magic`   | **RAD-Controller-Magic**    | Der Fluch des schnellen Erfolgs |
+| `02-dedicated-form-classes` | **Dedizierte Form-Klassen** | Befreit die Formulare           |
 
 > *Hinweis: Neue Feature-Branches und Architekturstufen werden hier kontinuierlich dokumentiert und verlinkt.*
 
@@ -123,7 +124,8 @@ php vendor/bin/rector --dry-run
 # Statische Code Analyse
 php vendor/bin/phpstan analyse
 ```
-In der `composer.json` sind noch entsprechende Aliase definiert. 
+
+In der `composer.json` sind noch entsprechende Aliase definiert.
 
 ```
 composer run-script
