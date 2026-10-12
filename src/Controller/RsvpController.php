@@ -23,10 +23,10 @@ class RsvpController extends AbstractController
         // Formular direkt im Controller bauen
         $form = $this->createFormBuilder($guest)
             ->add('name', TextType::class, [
-                'label' => 'Dein Name'
+                'label' => 'Dein Name',
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Ich bin dabei!'
+                'label' => 'Ich bin dabei!',
             ])
             ->getForm()
         ;

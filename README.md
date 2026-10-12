@@ -114,6 +114,9 @@ php bin/console debug:autowiring
 # Container & Konfiguration validieren
 php bin/console lint:container
 php bin/console lint:yaml config/
+
+# Code style
+php vendor/bin/php-cs-fixer fix --dry-run
 ```
 
 ---
