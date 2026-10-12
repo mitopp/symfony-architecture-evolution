@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Guest;
+use App\Form\GuestType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -22,16 +21,8 @@ class RsvpController extends AbstractController
     {
         $guest = new Guest();
 
-        // Formular direkt im Controller bauen
-        $form = $this->createFormBuilder($guest)
-            ->add('name', TextType::class, [
-                'label' => 'Dein Name',
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Ich bin dabei!',
-            ])
-            ->getForm()
-        ;
+        // Wir erstellen das Formular nun mit der Form-Klasse!
+        $form = $this->createForm(GuestType::class, $guest);
 
         // Request verarbeiten
         $form->handleRequest($request);
