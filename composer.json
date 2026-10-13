@@ -76,6 +76,13 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
+        "check": [
+            "@php:cs",
+            "@twig:cs",
+            "@rector",
+            "@php:stan",
+            "@php:unit"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],
