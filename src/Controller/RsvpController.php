@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Guest;
+use App\Form\Data\GuestRegistrationData;
 use App\Form\GuestType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,16 +20,20 @@ class RsvpController extends AbstractController
     #[Route(path: '/rsvp', name: self::ROUTE_NAME)]
     public function __invoke(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $guest = new Guest();
-
-        // Wir erstellen das Formular nun mit der Form-Klasse!
-        $form = $this->createForm(GuestType::class, $guest);
+        // 1. Wir starten mit einem leeren DTO statt einer Entität
+        $dto = new GuestRegistrationData();
+        $form = $this->createForm(GuestType::class, $dto);
 
         // Request verarbeiten
         $form->handleRequest($request);
 
         // Validieren und verarbeiten
         if ($form->isSubmitted() && $form->isValid()) {
+            // 2. Mapping: Wir nutzen das validierte DTO,
+            // um eine saubere Entität zu instanziieren
+            /** @phpstan-ignore argument.type */
+            $guest = new Guest($dto->name);
+
             // Speichern in der Datenbank
             $entityManager->persist($guest);
             $entityManager->flush();

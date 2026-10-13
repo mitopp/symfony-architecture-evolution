@@ -23,11 +23,12 @@ Dieses Projekt zeigt anhand verschiedener Branches und Evolutionsstufen, wie typ
 
 Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierungen sind in dedizierten Branches organisiert.
 
-| Branch                      | Stufe / Thema               | Beschreibung                    |
-|-----------------------------|-----------------------------|---------------------------------|
-| `main`                      | **Projekt**                 | Das komplette Beispiel Projekt  |
-| `01-rad-controller-magic`   | **RAD-Controller-Magic**    | Der Fluch des schnellen Erfolgs |
-| `02-dedicated-form-classes` | **Dedizierte Form-Klassen** | Befreit die Formulare           |
+| Branch                      | Stufe / Thema                                                     | Beschreibung                    |
+|-----------------------------|-------------------------------------------------------------------|---------------------------------|
+| `main`                      | **Projekt**                                                       | Das komplette Beispiel Projekt  |
+| `01-rad-controller-magic`   | **RAD-Controller-Magic**                                          | Der Fluch des schnellen Erfolgs |
+| `02-dedicated-form-classes` | **Dedizierte Form-Klassen**                                       | Befreit die Formulare           |
+| `03-form-dtos`              | **Warum Doctrine-Entitäten nichts in Formularen zu suchen haben** | Die toxische Beziehung          |
 
 > *Hinweis: Neue Feature-Branches und Architekturstufen werden hier kontinuierlich dokumentiert und verlinkt.*
 
@@ -130,6 +131,8 @@ In der `composer.json` sind noch entsprechende Aliase definiert.
 ```
 composer run-script
 ```
+
+Ein zusammengefasster Check lässt sich durch `composer run-script check` ausführen.
 
 ---
 
