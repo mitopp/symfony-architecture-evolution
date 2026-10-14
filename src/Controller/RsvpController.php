@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Entity\Guest;
 use App\Form\Data\GuestRegistrationData;
 use App\Form\GuestType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\GuestRegistrationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +17,7 @@ class RsvpController extends AbstractController
     public const string ROUTE_NAME = 'app_rsvp';
 
     #[Route(path: '/rsvp', name: self::ROUTE_NAME)]
-    public function __invoke(Request $request, EntityManagerInterface $entityManager): Response
+    public function __invoke(Request $request, GuestRegistrationService $registrationService): Response
     {
         // 1. Wir starten mit einem leeren DTO statt einer Entität
         $dto = new GuestRegistrationData();
@@ -29,14 +28,8 @@ class RsvpController extends AbstractController
 
         // Validieren und verarbeiten
         if ($form->isSubmitted() && $form->isValid()) {
-            // 2. Mapping: Wir nutzen das validierte DTO,
-            // um eine saubere Entität zu instanziieren
-            /** @phpstan-ignore argument.type */
-            $guest = new Guest($dto->name);
-
-            // Speichern in der Datenbank
-            $entityManager->persist($guest);
-            $entityManager->flush();
+            // Magie auslagern! Der Controller delegiert nur noch.
+            $registrationService->registerGuest($dto);
 
             // Rückmeldung
             $this->addFlash('success', 'Vielen Dank für deine Teilnahme!');
