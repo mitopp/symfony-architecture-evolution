@@ -1,0 +1,11 @@
+{% extends 'layout/page.html.twig' -%}
+
+{% block title -%}Gästeliste{% endblock -%}
+
+{% block content -%}
+<ul>
+    {% for guest in guests -%}
+        <li>{{ guest.name }}</li>
+    {% endfor -%}
+</ul>
+{% endblock -%}
