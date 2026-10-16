@@ -11,10 +11,16 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Guest>
  */
-class GuestRepository extends ServiceEntityRepository
+class GuestRepository extends ServiceEntityRepository implements GuestRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Guest::class);
+    }
+
+    public function save(Guest $guest): void
+    {
+        $this->getEntityManager()->persist($guest);
+        $this->getEntityManager()->flush();
     }
 }

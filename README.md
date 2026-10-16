@@ -31,6 +31,7 @@ Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierung
 | `03-form-dtos`              | **Warum Doctrine-Entitäten nichts in Formularen zu suchen haben** | Die toxische Beziehung          |
 | `04-service-extraction`     | **Controller auf Diät**                                           | Logik in Services kapseln       |
 | `05-view-dtos`              | **Model statt Entität im Template**                               | Readonly View Models            |
+| `06-repository-interfaces`  | **Repository Interfaces**                                         | Abstrakte Datenzugriffsschicht  |
 
 > *Hinweis: Neue Feature-Branches und Architekturstufen werden hier kontinuierlich dokumentiert und verlinkt.*
 

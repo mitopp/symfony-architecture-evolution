@@ -6,12 +6,12 @@ namespace App\Service;
 
 use App\Entity\Guest;
 use App\Form\Data\GuestRegistrationData;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\GuestRepositoryInterface;
 
 final readonly class GuestRegistrationService
 {
     public function __construct(
-        private EntityManagerInterface $entityManager,
+        private GuestRepositoryInterface $guestRepository,
     ) {
     }
 
@@ -23,8 +23,7 @@ final readonly class GuestRegistrationService
         $guest = new Guest($data->name);
 
         // 2. In der Datenbank speichern
-        $this->entityManager->persist($guest);
-        $this->entityManager->flush();
+        $this->guestRepository->save($guest);
 
         // Hier ist jetzt der perfekte Ort für Erweiterungen:
         // $this->mailer->sendConfirmation($guest);
