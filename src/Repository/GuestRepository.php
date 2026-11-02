@@ -7,11 +7,13 @@ namespace App\Repository;
 use App\Entity\Guest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\DependencyInjection\Attribute\AsAlias;
 
 /**
  * @extends ServiceEntityRepository<Guest>
  */
-class GuestRepository extends ServiceEntityRepository implements GuestRepositoryInterface
+#[AsAlias(id: GuestRepositoryInterface::class)]
+final class GuestRepository extends ServiceEntityRepository implements GuestRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

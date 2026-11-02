@@ -1,144 +1,69 @@
-# Symfony Architecture Evolution
+# Symfony Architektur-Evolution
 
-> **Vom RAD-Prototyp zum sauberen Code**
->
-> Dieses Repository demonstriert die schrittweise Evolution einer Symfony-Anwendung – von einem schnellen Rapid-Application-Development-Prototyp (RAD) hin zu einer sauberen, wartbaren und testbaren Architektur.
+Dieses Repository ist der offizielle Begleit-Code zur 7-teiligen Blog-Serie **"Von Symfony-Magie zur sauberen Architektur"** auf [mitopp.de](https://mitopp.de/blog).
 
-Weiterführende Informationen und alle Artikel dieser Serie findest du auf meinem [Blog](https://mitopp.de/blog).
+In dieser Serie bauen wir gemeinsam eine simple Event-Anmeldung (RSVP) und refactoren sie Schritt für Schritt von einem "Quick & Dirty"-Prototypen hin zu einer sauberen, testbaren und wartbaren Architektur.
 
-## Übersicht & Konzept
+## Wie funktioniert dieses Repository?
 
-In vielen realen Projekten beginnt die Entwicklung mit schnellen Prototypen (Fat Controllers, direkte Doctrine-Abhängigkeiten in UI-Schichten, schnelle CRUD-Generierung). Im Laufe der Zeit steigen jedoch die Anforderungen an Wartbarkeit, Skalierbarkeit und Testbarkeit.
+Der Code ist so aufgebaut, dass jeder Blog-Artikel seinen eigenen Git-Branch hat. Du kannst dir jeden Zwischenschritt isoliert ansehen oder über `git diff` genau nachvollziehen, was sich von einem Schritt zum nächsten geändert hat.
 
-Dieses Projekt zeigt anhand verschiedener Branches und Evolutionsstufen, wie typische Refactorings und Architekturmuster in Symfony umgesetzt werden:
+Beispiel, um die Änderungen von Teil 2 auf Teil 3 zu sehen:
 
-- **Trennung von Zuständigkeiten:** Controller schlank halten, Geschäftslogik kapseln
-- **Domain-Driven Design (DDD) / Clean Architecture Ansätze:** Entkopplung von Framework- und Infrastrukturdetails
-- **CQRS & Asynchronität:** Trennung von Lese- und Schreiboperationen mit Symfony Messenger
-- **Testbarkeit:** Unit-, Integrations- und Functional-Tests für robuste Software
+~~~bash
+git diff 02-dedicated-form-classes..03-form-dtos
+~~~
 
----
+## Die Architektur-Reise (Branches)
 
-## Branches & Evolutionsstufen
+Hier ist die Übersicht aller Artikel und der zugehörigen Branches. Springe in den Branch, um den Endzustand des jeweiligen Artikels zu sehen.
 
-Die verschiedenen Stufen der Architektur und spezifische Feature-Implementierungen sind in dedizierten Branches organisiert.
+| Teil  | Branch                      | Thema & Artikel-Link                                                                                                   | Kern-Lernziel                                                                                                      |
+|:------|:----------------------------|:-----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|
+| **1** | `01-rad-controller-magic`   | **[Frameworks - Der schnelle Erfolg](https://mitopp.de/blog/der-schnelle-erfolg-warum-wir-frameworks-lieben)**         | Rapid Application Development (RAD). Ein fertiges Feature in 15 Minuten – alles passiert im "God Controller".      |
+| **2** | `02-dedicated-form-classes` | **[Befreit die Formulare!](https://mitopp.de/blog/befreit-die-formulare-dedizierte-form-klassen)**                     | Single Responsibility Principle. Den FormBuilder in eigene Klassen auslagern, um Wiederverwendbarkeit zu schaffen. |
+| **3** | `03-form-dtos`              | **[Die toxische Beziehung](https://mitopp.de/blog/die-toxische-beziehung-warum-entitaten-nicht-in-formulare-gehoren)** | Warum Entities nicht ins Formular gehören. Einführung von Form-DTOs für echte Typsicherheit.                       |
+| **4** | `04-service-extraction`     | **[Controller auf Diät](https://mitopp.de/blog/controller-auf-diat-business-logik-in-services-auslagern)**             | Geschäftslogik in Application Services kapseln. Der Controller wird zum reinen HTTP-Verwalter.                     |
+| **5** | `05-view-dtos`              | **[Die unsichtbare Gefahr im Template](https://mitopp.de/blog/die-unsichtbare-gefahr-im-template-entities-vs-dtos)**   | Frontend von der Datenbank entkoppeln. Verhinderung von N+1-Queries und Daten-Leaks mittels View-DTOs.             |
+| **6** | `06-repository-interfaces`  | **[Wer speichert hier eigentlich?](https://mitopp.de/blog/wer-speichert-hier-eigentlich-repository-interfaces)**       | Dependency Inversion. Das System durch Repository-Interfaces komplett vom ORM (Doctrine) entkoppeln.               |
+| **7** | `07-decorator-caching`      | **[Caching wie von Zauberhand](https://mitopp.de/blog/caching-wie-von-zauberhand-das-decorator-pattern)**              | Das Decorator Pattern in Aktion. Einen blitzschnellen Cache vorschalten, ohne den Bestandscode anzufassen.         |
 
-| Branch                      | Stufe / Thema                                                     | Beschreibung                    |
-|-----------------------------|-------------------------------------------------------------------|---------------------------------|
-| `main`                      | **Projekt**                                                       | Das komplette Beispiel Projekt  |
-| `01-rad-controller-magic`   | **RAD-Controller-Magic**                                          | Der Fluch des schnellen Erfolgs |
-| `02-dedicated-form-classes` | **Dedizierte Form-Klassen**                                       | Befreit die Formulare           |
-| `03-form-dtos`              | **Warum Doctrine-Entitäten nichts in Formularen zu suchen haben** | Die toxische Beziehung          |
-| `04-service-extraction`     | **Controller auf Diät**                                           | Logik in Services kapseln       |
-| `05-view-dtos`              | **Model statt Entität im Template**                               | Readonly View Models            |
-| `06-repository-interfaces`  | **Repository Interfaces**                                         | Abstrakte Datenzugriffsschicht  |
+## Lokales Setup
 
-> *Hinweis: Neue Feature-Branches und Architekturstufen werden hier kontinuierlich dokumentiert und verlinkt.*
+Wenn du den Code lokal ausführen möchtest, benötigst du PHP 8.2+ und Composer. Eine lokale Datenbank ist erforderlich (z.B. via Docker, SQLite oder Symfony Local Web Server).
 
----
+### Repository klonen:
 
-## Systemanforderungen
-
-- **PHP:** >= 8.4 (mit Extensions `ctype`, `iconv`)
-- **Composer:** >= 2.x
-- **Docker & Docker Compose:** Für Datenbankdienste (PostgreSQL 16)
-- **Optional:** [Symfony CLI](https://symfony.com/download) für lokale Serververwaltung
-
----
-
-## Installation & Schnellstart
-
-### 1. Repository klonen & Abhängigkeiten installieren
-
-```bash
-git clone <repository-url>
+~~~bash
+git clone https://github.com/mitopp/symfony-architecture-evolution.git
 cd symfony-architecture-evolution
+~~~
+
+### Abhängigkeiten installieren:
+
+~~~bash
 composer install
-```
+~~~
 
-### 2. Infrastruktur (Docker) starten
+### Datenbank konfigurieren:
 
-Starte die PostgreSQL-Datenbank über Docker Compose:
+Kopiere die .env zu .env.local und passe die DATABASE_URL an (für einen schnellen Start kannst du auch SQLite nutzen):
 
-```bash
-docker compose up -d
-```
+~~~bash
+DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
+~~~
 
-*(Hinweis: Bei Nutzung der Symfony CLI startet der Docker-Container über die `.symfony.local.yaml` automatisch mit dem Webserver.)*
+### Datenbank & Tabellen erstellen:
 
-### 3. Datenbank initialisieren
+~~~bash
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+~~~
 
-```bash
-# Datenbank anlegen
-php bin/console doctrine:database:create --if-not-exists
+### Entwicklungsserver starten:
 
-# Migrationen ausführen
-php bin/console doctrine:migrations:migrate --no-interaction
-```
+~~~bash
+symfony server:start
+~~~
 
-### 4. Lokalen Entwicklungsserver starten
-
-Mit der **Symfony CLI** (empfohlen):
-
-```bash
-symfony serve
-```
-
-Die Anwendung ist standardmäßig unter `http://127.0.0.1:8888` erreichbar.
-
-Alternativ mit dem integrierten PHP-Webserver:
-
-```bash
-php -S 127.0.0.1:8888 -t public
-```
-
----
-
-## Tests ausführen
-
-Das Projekt nutzt PHPUnit für Unit-, Integrations- und Web-Tests:
-
-```bash
-php bin/phpunit
-```
-
----
-
-## Nützliche Befehle (Workflow)
-
-```bash
-# Cache leeren
-php bin/console cache:clear
-
-# Routen anzeigen
-php bin/console debug:router
-
-# Services & Autowiring prüfen
-php bin/console debug:autowiring
-
-# Container & Konfiguration validieren
-php bin/console lint:container
-php bin/console lint:yaml config/
-
-# Code style
-php vendor/bin/php-cs-fixer fix --dry-run
-php vendor/bin/twig-cs-fixer check
-php vendor/bin/rector --dry-run
-
-# Statische Code Analyse
-php vendor/bin/phpstan analyse
-```
-
-In der `composer.json` sind noch entsprechende Aliase definiert.
-
-```
-composer run-script
-```
-
-Ein zusammengefasster Check lässt sich durch `composer run-script check` ausführen.
-
----
-
-## Lizenz
-
-Dieses Projekt ist für Schulungs- und Demonstrationszwecke gedacht und wurde unter der [MIT-Lizenz](LICENSE) veröffentlicht.
+Jetzt kannst du die Applikation im Browser öffnen. Wechsle einfach den Branch (`git checkout 04-service-extraction`), um den Fortschritt der Architektur live zu testen!
